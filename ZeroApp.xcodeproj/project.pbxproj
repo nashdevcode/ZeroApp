@@ -3,12 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		C6953AB62DDFDEB5008FFD9C /* ZeroAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6953AB52DDFDEB5008FFD9C /* ZeroAppApp.swift */; };
-		C6953AB82DDFDEB5008FFD9C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6953AB72DDFDEB5008FFD9C /* ContentView.swift */; };
 		C6953ABA2DDFDEB8008FFD9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6953AB92DDFDEB8008FFD9C /* Assets.xcassets */; };
 		C6953ABD2DDFDEB8008FFD9C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6953ABC2DDFDEB8008FFD9C /* Preview Assets.xcassets */; };
 		C6953AC72DDFDEB8008FFD9C /* ZeroAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6953AC62DDFDEB8008FFD9C /* ZeroAppTests.swift */; };
@@ -36,7 +35,6 @@
 /* Begin PBXFileReference section */
 		C6953AB22DDFDEB5008FFD9C /* ZeroApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZeroApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6953AB52DDFDEB5008FFD9C /* ZeroAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZeroAppApp.swift; sourceTree = "<group>"; };
-		C6953AB72DDFDEB5008FFD9C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C6953AB92DDFDEB8008FFD9C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C6953ABC2DDFDEB8008FFD9C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C6953AC22DDFDEB8008FFD9C /* ZeroAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZeroAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,6 +43,12 @@
 		C6953AD02DDFDEB8008FFD9C /* ZeroAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZeroAppUITests.swift; sourceTree = "<group>"; };
 		C6953AD22DDFDEB8008FFD9C /* ZeroAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZeroAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		F3305DE22DE8107400F0EAC7 /* Model */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Model; sourceTree = "<group>"; };
+		F3305DE42DE8120600F0EAC7 /* VIewModel */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = VIewModel; sourceTree = "<group>"; };
+		F3305DE62DE8121B00F0EAC7 /* View */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = View; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		C6953AAF2DDFDEB5008FFD9C /* Frameworks */ = {
@@ -94,8 +98,10 @@
 		C6953AB42DDFDEB5008FFD9C /* ZeroApp */ = {
 			isa = PBXGroup;
 			children = (
+				F3305DE22DE8107400F0EAC7 /* Model */,
+				F3305DE62DE8121B00F0EAC7 /* View */,
+				F3305DE42DE8120600F0EAC7 /* VIewModel */,
 				C6953AB52DDFDEB5008FFD9C /* ZeroAppApp.swift */,
-				C6953AB72DDFDEB5008FFD9C /* ContentView.swift */,
 				C6953AB92DDFDEB8008FFD9C /* Assets.xcassets */,
 				C6953ABB2DDFDEB8008FFD9C /* Preview Content */,
 			);
@@ -141,6 +147,11 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				F3305DE22DE8107400F0EAC7 /* Model */,
+				F3305DE42DE8120600F0EAC7 /* VIewModel */,
+				F3305DE62DE8121B00F0EAC7 /* View */,
 			);
 			name = ZeroApp;
 			productName = ZeroApp;
@@ -257,7 +268,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C6953AB82DDFDEB5008FFD9C /* ContentView.swift in Sources */,
 				C6953AB62DDFDEB5008FFD9C /* ZeroAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

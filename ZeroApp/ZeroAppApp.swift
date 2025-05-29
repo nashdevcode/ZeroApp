@@ -14,6 +14,6 @@ struct ZeroAppApp: App {
         WindowGroup {
             ContentView()
         }
-        
+        .modelContainer(for: Reservation.self)
     }
 }

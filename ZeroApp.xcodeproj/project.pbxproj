@@ -46,7 +46,6 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		F3305DE22DE8107400F0EAC7 /* Model */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Model; sourceTree = "<group>"; };
-		F3305DE42DE8120600F0EAC7 /* VIewModel */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = VIewModel; sourceTree = "<group>"; };
 		F3305DE62DE8121B00F0EAC7 /* View */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = View; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
@@ -100,7 +99,6 @@
 			children = (
 				F3305DE22DE8107400F0EAC7 /* Model */,
 				F3305DE62DE8121B00F0EAC7 /* View */,
-				F3305DE42DE8120600F0EAC7 /* VIewModel */,
 				C6953AB52DDFDEB5008FFD9C /* ZeroAppApp.swift */,
 				C6953AB92DDFDEB8008FFD9C /* Assets.xcassets */,
 				C6953ABB2DDFDEB8008FFD9C /* Preview Content */,
@@ -150,7 +148,6 @@
 			);
 			fileSystemSynchronizedGroups = (
 				F3305DE22DE8107400F0EAC7 /* Model */,
-				F3305DE42DE8120600F0EAC7 /* VIewModel */,
 				F3305DE62DE8121B00F0EAC7 /* View */,
 			);
 			name = ZeroApp;

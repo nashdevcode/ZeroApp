@@ -12,7 +12,7 @@ import SwiftData
 struct ZeroAppApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
         }
         .modelContainer(for: Reservation.self)
     }

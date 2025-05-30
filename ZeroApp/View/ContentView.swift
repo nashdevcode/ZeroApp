@@ -12,6 +12,7 @@ struct ContentView: View {
     
     @Environment(\.modelContext) private var modelContext
     @Query private var reservations: [Reservation]
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -24,7 +25,9 @@ struct ContentView: View {
                 if !reservations.isEmpty {
                     List {
                         ForEach(reservations) { reservation in
-                            ReservationRowView(reservation: reservation)
+                            NavigationLink(destination: DetailReservationView(reservation: reservation)) {
+                                ReservationRowView(reservation: reservation)
+                            }
                         }
                         .onDelete(perform: deleteReservations)
                     }

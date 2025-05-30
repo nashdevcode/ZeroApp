@@ -14,44 +14,72 @@ struct ContentView: View {
     @Query private var reservations: [Reservation]
     
     var body: some View {
-        NavigationView {
-            VStack {
-                Text("Catering para tu ocasión especial")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .padding()
+        NavigationStack {
+            ZStack {
+                // Fondo de imagen con overlay
+                Image("fondoReservas")
+                    .resizable()
+                    .scaledToFill()
+                    .ignoresSafeArea()
+                    .blur(radius: 4)
+                    .overlay(Color.black.opacity(0.3))
                 
-                // Lista de reservas existentes
-                if !reservations.isEmpty {
-                    List {
-                        ForEach(reservations) { reservation in
-                            NavigationLink(destination: DetailReservationView(reservation: reservation)) {
-                                ReservationRowView(reservation: reservation)
+                VStack(alignment: .leading, spacing: 20) {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Mis Reservas")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                        
+                        Text("Catering para tu ocasión especial")
+                            .font(.title3)
+                            .foregroundColor(.white.opacity(0.8))
+                    }
+                    .padding(.top, 20)
+                    
+                    if !reservations.isEmpty {
+                        ScrollView {
+                            LazyVStack(spacing: 16) {
+                                ForEach(reservations) { reservation in
+                                    NavigationLink(destination: DetailReservationView(reservation: reservation)) {
+                                        ReservationCard(reservation: reservation)
+                                    }
+                                }
+                                .onDelete(perform: deleteReservations)
                             }
+                            .padding(.top)
                         }
-                        .onDelete(perform: deleteReservations)
+                    } else {
+                        Spacer()
+                        Text("No hay reservas")
+                            .foregroundColor(.white.opacity(0.8))
+                            .font(.title3)
+                        Spacer()
                     }
-                } else {
-                    Text("No hay reservas")
-                        .foregroundColor(.gray)
                 }
-                Spacer()
+                .padding(20) // ⭐️ Padding general para todo el contenido
                 
-                // Boton para crear nueva reserva
-                NavigationLink(destination: CreateReservationView()) {
+                // Botón flotante
+                VStack {
+                    Spacer()
                     HStack {
-                        Image(systemName: "plus")
-                        Text("Nueva Reserva")
+                        Spacer()
+                        NavigationLink(destination: CreateReservationView()) {
+                            HStack {
+                                Image(systemName: "plus")
+                                Text("Nueva Reserva")
+                                    .fontWeight(.semibold)
+                            }
+                            .padding()
+                            .background(Color.blue.opacity(0.9))
+                            .foregroundColor(.white)
+                            .cornerRadius(12)
+                            .shadow(radius: 5)
+                        }
+                        .padding()
                     }
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
                 }
-                .padding()
             }
-            .navigationTitle(Text("Mis Reservas"))
         }
     }
     
@@ -64,36 +92,52 @@ struct ContentView: View {
     }
 }
 
-struct ReservationRowView: View {
+struct ReservationCard: View {
     let reservation: Reservation
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
+        VStack(alignment: .leading, spacing: 8) {
             HStack {
                 Text(reservation.serviceType)
                     .font(.headline)
                 Spacer()
-                Text("S/\(Int(reservation.totalPrice))")
+                Text("S/ \(Int(reservation.totalPrice))")
                     .font(.headline)
                     .foregroundColor(.green)
             }
             
-            Text(reservation.formattedEventDate)
-                .font(.subheadline)
-                .foregroundColor(.secondary)
+            Divider()
+                .background(Color.gray.opacity(0.5))
             
-            Text(reservation.formattedTimeRange)
-                .font(.subheadline)
-                .foregroundColor(.secondary)
+            HStack {
+                Image(systemName: "calendar")
+                Text(reservation.formattedEventDate)
+            }
+            .font(.subheadline)
+            .foregroundColor(.secondary)
             
-            Text("\(reservation.guestCount) invitados")
-                .font(.caption)
-                .foregroundColor(.secondary)
+            HStack {
+                Image(systemName: "clock")
+                Text(reservation.formattedTimeRange)
+            }
+            .font(.subheadline)
+            .foregroundColor(.secondary)
+            
+            HStack {
+                Image(systemName: "person.2.fill")
+                Text("\(reservation.guestCount) invitados")
+            }
+            .font(.subheadline)
+            .foregroundColor(.secondary)
         }
-        .padding(.vertical, 2)
+        .padding()
+        .background(Color.white.opacity(0.9))
+        .cornerRadius(12)
+        .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2)
     }
 }
 
 #Preview {
     ContentView()
+        .modelContainer(for: Reservation.self, inMemory: true)
 }

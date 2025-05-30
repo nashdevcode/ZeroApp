@@ -5,19 +5,31 @@ struct CreateReservationView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
     
-    @State private var selectedService = "Boda"
+    @State private var selectedService = "Fiesta"
     @State private var eventDate = Date()
     @State private var startTime = Date()
     @State private var endTime = Date()
-    @State private var guestCount = 75
-    @State private var hourlyRate: Double = 200.0
+    @State private var guestCount = 5
     @State private var showingDateAlert = false
     
-    private let serviceTypes = ["Boda", "Empresarial", "Fiesta"]
+    private let serviceTypes = ["Fiesta", "Empresarial", "Boda"]
     
     private var totalPrice: Double {
         let hours = endTime.timeIntervalSince(startTime) / 3600
-        return max(hours, 0) * hourlyRate
+        return max(hours, 0) * getHourlyRateForService(selectedService)
+    }
+    
+    private func getHourlyRateForService(_ service: String) -> Double {
+        switch service {
+        case "Boda":
+            return 250.0
+        case "Empresarial":
+            return 150.0
+        case "Fiesta":
+            return 80.0
+        default:
+            return 80.0
+        }
     }
     
     // Validación de fecha - debe ser hoy o en el futuro
@@ -51,6 +63,16 @@ struct CreateReservationView: View {
                         }
                     }
                     .pickerStyle(SegmentedPickerStyle())
+                    
+                    // Mostrar la tarifa actual seleccionada
+                    HStack {
+                        Text("Tarifa seleccionada:")
+                        Spacer()
+                        Text("S/ \(String(format: "%.2f", getHourlyRateForService(selectedService))) por hora")
+                            .font(.headline)
+                            .foregroundColor(.green)
+                    }
+                    .padding(.vertical, 6)
                 }
                 
                 Section("Fecha del Evento") {
@@ -137,6 +159,7 @@ struct CreateReservationView: View {
                             .frame(width: 80)
                     }
                     
+                    /*
                     HStack {
                         Text("Tarifa por hora")
                         Spacer()
@@ -144,7 +167,9 @@ struct CreateReservationView: View {
                             .keyboardType(.decimalPad)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .frame(width: 120)
+                            .disabled(true)
                     }
+                     */
                 }
                 
                 Section("Resumen") {
